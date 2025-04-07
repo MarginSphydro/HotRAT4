@@ -38,6 +38,12 @@ namespace ClientDemo
                         case "香辣鸡腿堡":
                             await Program.client.SendDataAsync(2, BuildResult(Program.SessionId, code, "一个香辣鸡腿堡8块钱人民币."), AuthModel.Token());
                             break;
+                        case "FRAME":
+                            //var resolution = dataL[1];
+                            string scResult = ScreenHelper.CaptureScreenAsBase64();
+                            await Program.client.SendDataAsync(2, BuildResult(Program.SessionId, code, scResult), AuthModel.Token());
+                            
+                            break;
                         case "SHELL":
                             if (dataL.Length >= 2)
                             {

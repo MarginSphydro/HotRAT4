@@ -16,5 +16,18 @@ namespace HotRAT_Server.ApiServer.Controllers
             _logger = logger;
         }
 
+        [HttpPost("getframe")]
+        public async Task<IActionResult> GetFrame([FromForm] string token, [FromForm] string id, [FromForm] string tick = "")
+        {
+            if (string.IsNullOrEmpty(token) || token != AuthModel.Token())
+            {
+                return Ok(new { code = 203, data = false });
+            }
+            else
+            {
+                var result = await Program.server.SendMessage(id,"FRAME");
+                return Ok(new { code = 200, data = result });
+            }
+        }
     }
 }
