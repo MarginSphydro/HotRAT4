@@ -1,0 +1,6 @@
+@HotRAT.Server_HostAddress = http://localhost:5208
+
+GET {{HotRAT.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
