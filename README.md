@@ -1,5 +1,5 @@
-# HotRAT 4.0
- HotRAT 4.0
+# HotRAT 4.1
+ HotRAT 4.1
 一款用于批量控制PC的系统
 由 WebAPI服务器、套接字服务器、主控端(可选)、被控端组成
 
