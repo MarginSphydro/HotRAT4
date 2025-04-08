@@ -88,7 +88,6 @@ namespace HotRAT.Client
             return string.Join("|", wxList);
         }
 
-
         public static string DetectA()
         {
             try
@@ -149,7 +148,7 @@ namespace HotRAT.Client
             {
                 string productName = reg?.GetValue("ProductName")?.ToString() ?? "Windows";
                 string displayVersion = reg?.GetValue("DisplayVersion")?.ToString() ?? "";
-                return $"{productName} {displayVersion} (Build {osVersion.Version.Build})";
+                return $"{productName} {displayVersion}";
             }
         }
 

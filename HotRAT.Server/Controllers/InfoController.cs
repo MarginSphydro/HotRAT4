@@ -27,7 +27,7 @@ namespace HotRAT.Server.Controllers
                 ConcurrentDictionary<Guid, ClientInfo> clients = new();
                 foreach (var client in Runtimes._clients)
                 {
-                    Console.WriteLine(clients.TryAdd(client.Value.ConnectionId, client.Value.Info));
+                    clients.TryAdd(client.Key, client.Value.Info);
                 }
                 return Ok(new { code = 200, data = clients });
             }

@@ -19,8 +19,7 @@ namespace HotRAT.Server.Controllers
         public IActionResult AuthToken(string token)
         {
             if (token == Runtimes.Token())
-            {
-                LoggerModel.AddToLog("重载服务器配置文件", InfoLevel.Normal);
+            { 
                 return Ok(new { code = 200, data = true });
             }
             else
@@ -36,19 +35,6 @@ namespace HotRAT.Server.Controllers
                 return Ok(new { code = 203, data = "not found key." });
 
             return Ok(new { code = 200, data = Libs.Auth.TokenModel.Build(key) });
-        }
-
-        [HttpGet("time")]
-        public IActionResult GetTime()
-        {
-            return Ok(new { code = 200, data = DateTime.Now.ToString("yyyyMMddHH") });
-        }
-
-        [HttpGet("reload")]
-        public IActionResult Reload()
-        {
-            Configs.ConfigModels.Reload();
-            return Ok(new { code = 200, data = true });
         }
     }
 }

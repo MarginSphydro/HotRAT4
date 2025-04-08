@@ -1,30 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\",
+  "WorkspaceRootPath": "E:\\Project\\CSharp\\HotRAT4.0\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|c:\\users\\smazo\\desktop\\hotrat4.0\\hotrat.server\\controllers\\infocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|solutionrelative:hotrat.server\\controllers\\infocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|e:\\project\\csharp\\hotrat4.0\\hotrat.server\\models\\wshandles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|solutionrelative:hotrat.server\\models\\wshandles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|c:\\users\\smazo\\desktop\\hotrat4.0\\hotrat.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|solutionrelative:hotrat.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|c:\\users\\smazo\\desktop\\hotrat4.0\\hotrat.server\\runtimes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|solutionrelative:hotrat.server\\runtimes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E0035580-5235-4A6E-B10B-59CDAAA8B195}|HotRAT.Client\\HotRAT.Client.csproj|c:\\users\\smazo\\desktop\\hotrat4.0\\hotrat.client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0035580-5235-4A6E-B10B-59CDAAA8B195}|HotRAT.Client\\HotRAT.Client.csproj|solutionrelative:hotrat.client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E0035580-5235-4A6E-B10B-59CDAAA8B195}|HotRAT.Client\\HotRAT.Client.csproj|c:\\users\\smazo\\desktop\\hotrat4.0\\hotrat.client\\getinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0035580-5235-4A6E-B10B-59CDAAA8B195}|HotRAT.Client\\HotRAT.Client.csproj|solutionrelative:hotrat.client\\getinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|c:\\users\\smazo\\desktop\\hotrat4.0\\hotrat.server\\models\\hpssocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|e:\\project\\csharp\\hotrat4.0\\hotrat.server\\models\\hpssocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|solutionrelative:hotrat.server\\models\\hpssocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|e:\\project\\csharp\\hotrat4.0\\hotrat.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|solutionrelative:hotrat.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,65 +58,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GetInfo.cs",
-              "DocumentMoniker": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\HotRAT.Client\\GetInfo.cs",
-              "RelativeDocumentMoniker": "HotRAT.Client\\GetInfo.cs",
-              "ToolTip": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\HotRAT.Client\\GetInfo.cs",
-              "RelativeToolTip": "HotRAT.Client\\GetInfo.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAIwJsAAAAdAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "WSHandles.cs",
+              "DocumentMoniker": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Models\\WSHandles.cs",
+              "RelativeDocumentMoniker": "HotRAT.Server\\Models\\WSHandles.cs",
+              "ToolTip": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Models\\WSHandles.cs",
+              "RelativeToolTip": "HotRAT.Server\\Models\\WSHandles.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAIwB0AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T13:47:49.531Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\HotRAT.Client\\Program.cs",
-              "RelativeDocumentMoniker": "HotRAT.Client\\Program.cs",
-              "ToolTip": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\HotRAT.Client\\Program.cs",
-              "RelativeToolTip": "HotRAT.Client\\Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAuwBkAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T12:38:20.067Z",
+              "WhenOpened": "2025-04-08T17:41:01.059Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\HotRAT.Server\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "HotRAT.Server\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\HotRAT.Server\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "HotRAT.Server\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T12:58:29.355Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "InfoController.cs",
-              "DocumentMoniker": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\HotRAT.Server\\Controllers\\InfoController.cs",
-              "RelativeDocumentMoniker": "HotRAT.Server\\Controllers\\InfoController.cs",
-              "ToolTip": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\HotRAT.Server\\Controllers\\InfoController.cs",
-              "RelativeToolTip": "HotRAT.Server\\Controllers\\InfoController.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAwBsAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T15:00:36.314Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "HPSSocket.cs",
-              "DocumentMoniker": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\HotRAT.Server\\Models\\HPSSocket.cs",
+              "DocumentMoniker": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Models\\HPSSocket.cs",
               "RelativeDocumentMoniker": "HotRAT.Server\\Models\\HPSSocket.cs",
-              "ToolTip": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\HotRAT.Server\\Models\\HPSSocket.cs",
+              "ToolTip": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Models\\HPSSocket.cs",
               "RelativeToolTip": "HotRAT.Server\\Models\\HPSSocket.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAkwCgAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAAAKQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-07T12:00:03.337Z",
               "EditorCaption": ""
@@ -136,14 +85,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Runtimes.cs",
-              "DocumentMoniker": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\HotRAT.Server\\Runtimes.cs",
-              "RelativeDocumentMoniker": "HotRAT.Server\\Runtimes.cs",
-              "ToolTip": "C:\\Users\\SmaZo\\Desktop\\HotRAT4.0\\HotRAT.Server\\Runtimes.cs",
-              "RelativeToolTip": "HotRAT.Server\\Runtimes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Program.cs",
+              "RelativeDocumentMoniker": "HotRAT.Server\\Program.cs",
+              "ToolTip": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Program.cs",
+              "RelativeToolTip": "HotRAT.Server\\Program.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAWwDsAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T11:57:28.13Z",
+              "WhenOpened": "2025-04-08T16:55:54.709Z",
               "EditorCaption": ""
             }
           ]

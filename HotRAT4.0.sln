@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotRAT.Client", "HotRAT.Cli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotRAT.Libs", "HotRAT.Libs\HotRAT.Libs.csproj", "{86570F0E-ED0C-45E8-BDB4-7D32C3440D0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotRAT.WSServer", "HotRAT.WSServer\HotRAT.WSServer.csproj", "{500903C6-9E4D-444C-90E0-8126DB95373B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{86570F0E-ED0C-45E8-BDB4-7D32C3440D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86570F0E-ED0C-45E8-BDB4-7D32C3440D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86570F0E-ED0C-45E8-BDB4-7D32C3440D0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{500903C6-9E4D-444C-90E0-8126DB95373B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500903C6-9E4D-444C-90E0-8126DB95373B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500903C6-9E4D-444C-90E0-8126DB95373B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500903C6-9E4D-444C-90E0-8126DB95373B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
