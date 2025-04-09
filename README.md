@@ -1,4 +1,4 @@
-# HotRAT 4.1
+# HotRAT 4.1 [开发中]
  HotRAT 4.1
 一款用于批量控制PC的系统
 由 服务端（WebAPI、WebSocket、Socket）、主控端、被控端组成
