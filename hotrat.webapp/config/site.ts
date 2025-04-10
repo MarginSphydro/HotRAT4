@@ -9,7 +9,7 @@ export const siteConfig = {
       href: "/"
     },
     {
-      label: "客户端",
+      label: "设备",
       href: "/client"
     },
     {

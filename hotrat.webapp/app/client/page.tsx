@@ -1,11 +1,23 @@
 "use client";
-import { useWebSocket } from "@/app/layout";
-import { Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@heroui/react";
-export default function ClientPage() {
-  const { clients, loading, error } = useWebSocket();
+import { useWebSocket } from "@/components/WebSocketProvider";
+import { Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Image } from "@heroui/react";
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
+export default function ClientPage() {
+  const { 
+    clients, 
+    loading, 
+    error, 
+    connectedClientId, 
+    connectToClient, 
+    disconnectClient 
+  } = useWebSocket();
+
+  const handleConnectionAction = (clientId: string) => {
+    if (connectedClientId === clientId) {
+      disconnectClient();
+    } else if (!connectedClientId) {
+      connectToClient(clientId);
+    }
   };
 
   return (
@@ -18,21 +30,21 @@ export default function ClientPage() {
       <div className="w-full max-w-full overflow-hidden">
         <Table aria-label="客户端列表" className="w-full">
           <TableHeader>
-          <TableColumn>设备名称</TableColumn>
+            <TableColumn>设备名称</TableColumn>
             <TableColumn className="max-md:hidden">IP地址</TableColumn>
-
             <TableColumn className="max-md:hidden">用户名</TableColumn>
-            <TableColumn>系统版本</TableColumn>
+            <TableColumn className="max-md:hidden">系统版本</TableColumn>
             <TableColumn>连接时间</TableColumn>
+            <TableColumn>连接人数</TableColumn>
             <TableColumn>操作</TableColumn>
           </TableHeader>
           <TableBody>
             {clients.map((client) => (
               <TableRow key={client.id}>
-                                <TableCell>{client.deviceName}</TableCell>
+                <TableCell>{client.deviceName}</TableCell>
                 <TableCell className="max-md:hidden">{client.ip}:{client.port}</TableCell>
                 <TableCell className="max-md:hidden">{client.userName}</TableCell>
-                <TableCell>{client.version}</TableCell>
+                <TableCell className="max-md:hidden">{client.version}</TableCell>
                 <TableCell>
                   {client.time ? new Date(client.time).toLocaleString('zh-CN', {
                     month: '2-digit',
@@ -42,12 +54,19 @@ export default function ClientPage() {
                     hour12: false
                   }).replace(/\//g, '-') : 'N/A'}
                 </TableCell>
+                <TableCell>{client.count}</TableCell>
                 <TableCell>
                   <Button 
-                    size="sm" 
-                    onClick={() => copyToClipboard(client.id)}
+                    isIconOnly 
+                    onClick={() => handleConnectionAction(client.id)} 
+                    aria-label={connectedClientId === client.id ? "disconnect" : "connect"}
+                    variant="faded"
+                    isDisabled={!!connectedClientId && connectedClientId !== client.id}
                   >
-                    ID
+                    <Image 
+                      src={connectedClientId === client.id ? "/disc.png" : "/connect.png"} 
+                      alt={connectedClientId === client.id ? "断开连接" : "连接"}
+                    />
                   </Button>
                 </TableCell>
               </TableRow>

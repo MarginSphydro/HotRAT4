@@ -19,13 +19,9 @@ namespace HotRAT.Server.Controllers
         public IActionResult AuthToken(string token)
         {
             if (token == Runtimes.Token())
-            { 
                 return Ok(new { code = 200, data = true });
-            }
             else
-            {
                 return Ok(new { code = 203, data = false });
-            }
         }
 
         [HttpGet("auth/build")]

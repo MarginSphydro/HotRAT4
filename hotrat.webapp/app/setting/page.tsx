@@ -18,7 +18,7 @@ export default function SettingLayout() {
     const savedKey = localStorage.getItem("serverkey");
     
     if (savedAddress) setServerAddress(savedAddress);
-    if (savedApi) setServerApi(serverApi);
+    if (savedApi) setServerApi(savedApi);
     if (savedKey) setServerKey(savedKey);
   }, []);
 
