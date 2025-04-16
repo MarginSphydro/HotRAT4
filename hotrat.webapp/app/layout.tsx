@@ -26,7 +26,7 @@ export default function RootLayout({
               <main className="container mx-auto pt-16 px-6 flex-grow">
                 {children}
               </main>
-              <MobileFooter/>
+              {/* <MobileFooter/> */}
             </div>
           </Providers>
         </WebSocketProvider>

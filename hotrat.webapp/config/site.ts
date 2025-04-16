@@ -13,12 +13,16 @@ export const siteConfig = {
       href: "/client"
     },
     {
-      label: "控制",
-      href: "/control"
+      label: "终端",
+      href: "/console"
     },
     {
       label: "文档",
       href: "/docs"
+    },
+    {
+      label: "文件",
+      href: "/explorer"
     },
     {
       label: "设置",
@@ -28,6 +32,6 @@ export const siteConfig = {
   links: {
     github: "https://github.com/Yuxi-IT/HotRAT4",
     sponsor: "",
-    docs: "/doc"
+    docs: "/docs"
   },
 };

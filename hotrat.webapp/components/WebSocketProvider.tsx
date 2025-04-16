@@ -1,15 +1,18 @@
+// WebSocketProvider.tsx
 "use client";
 
-import {
+import React, {
   createContext,
   useContext,
   useState,
   useEffect,
-  ReactNode,
   useCallback,
+  ReactNode,
 } from "react";
+import { json } from "stream/consumers";
 
-interface ClientInfo {
+// 定义客户端信息结构（根据实际需求可进行扩展）
+export interface ClientInfo {
   id: string;
   ip: string;
   port: string;
@@ -20,11 +23,20 @@ interface ClientInfo {
   count: number;
 }
 
+// 文件项结构
+export interface FileItem {
+  name: string;
+  time: string;
+  type: "FILE" | "DIR";
+}
+
+// 认证响应
 interface AuthResponse {
   code: number;
   data: string;
 }
 
+// 定义 WebSocket 上下文类型
 interface WebSocketContextType {
   clients: ClientInfo[];
   loading: boolean;
@@ -32,6 +44,7 @@ interface WebSocketContextType {
   ws: WebSocket | null;
   connectedClientId: string | null;
   shellLog: string;
+  fileList: FileItem[];
   setshellLog: (log: string, append?: boolean) => void;
   connectToClient: (id: string) => void;
   disconnectClient: () => void;
@@ -45,25 +58,29 @@ const WebSocketContext = createContext<WebSocketContextType | undefined>(
 export function useWebSocket() {
   const context = useContext(WebSocketContext);
   if (!context) {
-    throw new Error("useWebSocket must be used within a WebSocketProvider");
+    throw new Error("useWebSocket 必须在 WebSocketProvider 内部使用");
   }
   return context;
 }
 
-export function WebSocketProvider({ children }: { children: ReactNode }) {
+interface Props {
+  children: ReactNode;
+}
+
+export function WebSocketProvider({ children }: Props) {
   const [clients, setClients] = useState<ClientInfo[]>([]);
   const [ws, setWs] = useState<WebSocket | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [connectedClientId, setConnectedClientId] = useState<string | null>(
-    null
-  );
+  const [connectedClientId, setConnectedClientId] = useState<string | null>(null);
   const [shellLog, setShellLog] = useState<string>("");
+  const [fileList, setFileList] = useState<FileItem[]>([]);
 
   const setshellLog = (log: string, append: boolean = false) => {
     setShellLog((prev) => (append ? `${prev}${log}` : log));
   };
 
+  // 用于从服务器 API 获取验证 token
   const fetchToken = async (): Promise<string> => {
     try {
       const apiUrl = localStorage.getItem("serverapi");
@@ -73,9 +90,7 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
         throw new Error("请先设置服务器API地址和密钥");
       }
 
-      const response = await fetch(
-        `http://${apiUrl}/api/auth/build?key=${key}`
-      );
+      const response = await fetch(`http://${apiUrl}/api/auth/build?key=${key}`);
       const data: AuthResponse = await response.json();
 
       if (data.code !== 200 || !data.data) {
@@ -89,6 +104,7 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // 发送鉴权请求
   const sendAuthRequest = async (websocket: WebSocket) => {
     try {
       const token = await fetchToken();
@@ -99,6 +115,7 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // 刷新客户端列表
   const refreshClients = async () => {
     if (!ws || ws.readyState !== WebSocket.OPEN) {
       setError("WebSocket连接未就绪");
@@ -109,13 +126,13 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
     setLoading(false);
   };
 
+  // 连接至指定客户端
   const connectToClient = useCallback(
     (id: string) => {
       if (!ws || ws.readyState !== WebSocket.OPEN) {
         setError("WebSocket连接未就绪");
         return;
       }
-
       setConnectedClientId(id);
       ws.send(`CONNECT\n${id}`);
       console.log(`请求连接客户端: ${id}`);
@@ -123,18 +140,36 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
     [ws]
   );
 
+  // 断开客户端连接
   const disconnectClient = useCallback(() => {
     if (!ws || ws.readyState !== WebSocket.OPEN) {
       setError("WebSocket连接未就绪");
       return;
     }
-
     if (connectedClientId) {
       ws.send(`DISCONNECT\n${connectedClientId}`);
       console.log(`断开连接客户端: ${connectedClientId}`);
     }
     setConnectedClientId(null);
   }, [ws, connectedClientId]);
+
+  // 文件列表处理：解析服务器返回的文件列表内容
+  const handleFilesList = (raw: string) => {
+    // 服务器把换行符替换成了 "\n"（字符串形式）
+    // 如果是原始换行符，请使用 raw.split("\n");
+    const lines = raw.split("\\n");
+    const list: FileItem[] = lines
+      .map((line) => {
+        const parts = line.split("|");
+        if (parts.length >= 3) {
+          const [name, time, type] = parts;
+          return { name, time, type: type === "DIR" ? "DIR" : "FILE" };
+        }
+        return null;
+      })
+      .filter((item): item is FileItem => item !== null);
+    setFileList(list);
+  };
 
   useEffect(() => {
     const initWebSocket = async () => {
@@ -162,15 +197,18 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
         websocket.onmessage = (event) => {
           try {
             const response = JSON.parse(event.data);
-            console.log(response);
+            console.log("接收到消息:", response);
             switch (response.type) {
               case "CLIENTS":
-                handleClientsUpdate(response.data);
+                // 更新客户端列表（示例中未作详细处理）
+                if (Array.isArray(response.data)) {
+                  setClients(response.data);
+                } else {
+                  setClients([response.data]);
+                }
                 break;
               case "CONNECTION_STATUS":
-                setConnectedClientId(
-                  response.connected ? response.clientId : null
-                );
+                setConnectedClientId(response.connected ? response.clientId : null);
                 break;
               case "ERROR":
                 setError(response.message);
@@ -178,28 +216,16 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
               case "SHELL":
                 setshellLog(response.data + "\n", true);
                 break;
+              case "FILES":
+                // 文件列表消息
+                handleFilesList(response.data);
+                break;
               default:
                 console.warn("未知消息类型:", response.type);
             }
           } catch (error) {
             console.error("消息解析失败:", event.data);
           }
-        };
-
-        const handleClientsUpdate = (data: any) => {
-          setClients((prev) => {
-            const normalizedData = Array.isArray(data) ? data : [data];
-            const clientMap = new Map(prev.map((c) => [c.id, c]));
-
-            normalizedData.forEach((client: ClientInfo) => {
-              clientMap.set(client.id, {
-                ...client,
-                count: client.count ?? clientMap.get(client.id)?.count ?? 0,
-              });
-            });
-
-            return Array.from(clientMap.values());
-          });
         };
 
         websocket.onerror = (error) => {
@@ -232,6 +258,7 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
         ws,
         connectedClientId,
         shellLog,
+        fileList,
         setshellLog,
         connectToClient,
         disconnectClient,

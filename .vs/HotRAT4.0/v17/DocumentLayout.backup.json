@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "E:\\Project\\CSharp\\HotRAT4.0\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E0035580-5235-4A6E-B10B-59CDAAA8B195}|HotRAT.Client\\HotRAT.Client.csproj|e:\\project\\csharp\\hotrat4.0\\hotrat.client\\messagehandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0035580-5235-4A6E-B10B-59CDAAA8B195}|HotRAT.Client\\HotRAT.Client.csproj|solutionrelative:hotrat.client\\messagehandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|e:\\project\\csharp\\hotrat4.0\\hotrat.server\\models\\hpssocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|solutionrelative:hotrat.server\\models\\hpssocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E0035580-5235-4A6E-B10B-59CDAAA8B195}|HotRAT.Client\\HotRAT.Client.csproj|e:\\project\\csharp\\hotrat4.0\\hotrat.client\\messagehandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0035580-5235-4A6E-B10B-59CDAAA8B195}|HotRAT.Client\\HotRAT.Client.csproj|solutionrelative:hotrat.client\\messagehandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|e:\\project\\csharp\\hotrat4.0\\hotrat.server\\models\\websocketserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|solutionrelative:hotrat.server\\models\\websocketserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{77572737-FC83-4B87-9E33-DF27C4E3F77E}|HotRAT.Server\\HotRAT.Server.csproj|e:\\project\\csharp\\hotrat4.0\\hotrat.server\\models\\wshandles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,59 +70,71 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Client\\Program.cs",
-              "RelativeDocumentMoniker": "HotRAT.Client\\Program.cs",
-              "ToolTip": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Client\\Program.cs",
-              "RelativeToolTip": "HotRAT.Client\\Program.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAMwDYAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T11:15:30.537Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MessageHandle.cs",
               "DocumentMoniker": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Client\\MessageHandle.cs",
               "RelativeDocumentMoniker": "HotRAT.Client\\MessageHandle.cs",
               "ToolTip": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Client\\MessageHandle.cs",
               "RelativeToolTip": "HotRAT.Client\\MessageHandle.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAqwBMAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T11:02:14.467Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "WebSocketServer.cs",
+              "DocumentMoniker": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Models\\WebSocketServer.cs",
+              "RelativeDocumentMoniker": "HotRAT.Server\\Models\\WebSocketServer.cs",
+              "ToolTip": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Models\\WebSocketServer.cs",
+              "RelativeToolTip": "HotRAT.Server\\Models\\WebSocketServer.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAiwEwAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T04:35:07.425Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Client\\Program.cs",
+              "RelativeDocumentMoniker": "HotRAT.Client\\Program.cs",
+              "ToolTip": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Client\\Program.cs",
+              "RelativeToolTip": "HotRAT.Client\\Program.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAAAE0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T11:15:30.537Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "HPSSocket.cs",
               "DocumentMoniker": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Models\\HPSSocket.cs",
               "RelativeDocumentMoniker": "HotRAT.Server\\Models\\HPSSocket.cs",
               "ToolTip": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Models\\HPSSocket.cs",
               "RelativeToolTip": "HotRAT.Server\\Models\\HPSSocket.cs",
-              "ViewState": "AgIAAKgAAAAAAAAAAAAAAK0AAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAGwBAAAAAAAAAAAiwH8BAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T09:37:45.76Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "WSHandles.cs",
               "DocumentMoniker": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Models\\WSHandles.cs",
               "RelativeDocumentMoniker": "HotRAT.Server\\Models\\WSHandles.cs",
               "ToolTip": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Models\\WSHandles.cs",
               "RelativeToolTip": "HotRAT.Server\\Models\\WSHandles.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAACMAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAA0AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-08T17:41:01.059Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\Project\\CSharp\\HotRAT4.0\\HotRAT.Server\\Program.cs",
               "RelativeDocumentMoniker": "HotRAT.Server\\Program.cs",
@@ -126,8 +142,7 @@
               "RelativeToolTip": "HotRAT.Server\\Program.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAWwDsAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T16:55:54.709Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T16:55:54.709Z"
             }
           ]
         }
