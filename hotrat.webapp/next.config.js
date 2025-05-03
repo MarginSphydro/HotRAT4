@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    basePath: '/hotrat',
+    output: 'export'
+  };
 
 module.exports = nextConfig;

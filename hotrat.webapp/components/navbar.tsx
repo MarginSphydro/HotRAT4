@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -7,7 +9,7 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@heroui/navbar";
-import { Button } from "@heroui/button";
+import { Button, ButtonGroup } from "@heroui/button";
 import { Kbd } from "@heroui/kbd";
 import { Link } from "@heroui/link";
 import { Input } from "@heroui/input";
@@ -25,8 +27,26 @@ import {
   SearchIcon,
   Logo,
 } from "@/components/icons";
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@heroui/modal";
+import React from "react";
+import { Image } from "@heroui/react";
 
 export const Navbar = () => {
+  const {isOpen, onOpen, onClose} = useDisclosure();
+  const [backdrop, setBackdrop] = React.useState("opaque");
+  
+  const [selected, setSelected] = React.useState("wechat");
+
+  const handleOpen = (backdrop: React.SetStateAction<string>) => {
+    setBackdrop(backdrop);
+    onOpen();
+  };
+  const imageMap: Record<string, string> = {
+    wechat: "/wxcode.jpg",
+    alipay: "/alipay.jpg",
+    usdt: "/usdt.jpg",
+  };
+
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -62,12 +82,10 @@ export const Navbar = () => {
           </Link>
           <ThemeSwitch />
           <Button
-            isExternal
-            as={Link}
-            className="text-sm font-normal text-default-600 bg-default-100"
-            href={siteConfig.links.sponsor}
-            startContent={<HeartFilledIcon className="text-danger" />}
+            className="capitalize"
+            color="warning"
             variant="flat"
+            onPress={() => handleOpen("blur")}
           >
             赞助
           </Button>
@@ -111,6 +129,57 @@ export const Navbar = () => {
           ))}
         </div>
       </NavbarMenu>
+
+      <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                使用微信、支付宝或USDT赞助我们
+              </ModalHeader>
+              <ModalBody className="flex flex-col items-center gap-4">
+                <ButtonGroup>
+                  <Button
+                    onPress={() => setSelected("wechat")}
+                    color={selected === "wechat" ? "primary" : "default"}
+                  >
+                    微信
+                  </Button>
+                  <Button
+                    onPress={() => setSelected("alipay")}
+                    color={selected === "alipay" ? "primary" : "default"}
+                  >
+                    支付宝
+                  </Button>
+                  <Button
+                    onPress={() => setSelected("usdt")}
+                    color={selected === "usdt" ? "primary" : "default"}
+                  >
+                    USDT
+                  </Button>
+                </ButtonGroup>
+
+                <Image
+                  src={imageMap[selected]}
+                  alt="收款二维码"
+                  width={200}
+                  height={200}
+                  className="rounded-lg"
+                />
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  下次吧
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  谢谢您
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      
     </HeroUINavbar>
   );
 };
