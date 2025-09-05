@@ -1,0 +1,43 @@
+name: Build and Deploy HotRAT4
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build the project
+        run: dotnet build --configuration Release
+
+      - name: Publish the project
+        run: dotnet publish --configuration Release --output ./publish
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: HotRAT4-build
+          path: ./publish
+
+      - name: Deploy to server
+        run: |
+          # 替换为你的部署脚本
+          scp -r ./publish user@server:/path/to/deploy
+          ssh user@server 'systemctl restart hotrat4'
